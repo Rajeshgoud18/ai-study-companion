@@ -1,0 +1,185 @@
+/* =========================================================
+   REGISTER
+   ========================================================= */
+
+/* Login.css already contains the common auth styling.
+   Import it here so both pages share the exact background,
+   card, brand, inputs and button system. */
+
+@import "./Login.css";
+
+
+/* =========================================================
+   REGISTER CONTAINER
+   ========================================================= */
+
+.register-container {
+    max-width: 440px;
+}
+
+
+/* =========================================================
+   REGISTER CARD
+   ========================================================= */
+
+.register-card {
+    padding-top: 35px;
+    padding-bottom: 31px;
+}
+
+.register-card .auth-card-heading {
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   PASSWORD REQUIREMENTS
+   ========================================================= */
+
+.password-requirements {
+    margin-top: -3px;
+    margin-bottom: 20px;
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    background: #f7f7fa;
+}
+
+.requirements-title {
+    margin-bottom: 8px;
+
+    color: #5d5b68;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.requirement {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    min-height: 21px;
+
+    color: #9795a2;
+
+    font-size: 11px;
+}
+
+.requirement.valid {
+    color: #5c9b70;
+}
+
+.password-check,
+.password-cross {
+    width: 15px;
+    height: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.password-check {
+    color: #ffffff;
+    background: #58bd76;
+}
+
+.password-cross {
+    color: #aaa8b3;
+    background: #e8e8ed;
+}
+
+
+/* =========================================================
+   REGISTER ERROR
+   ========================================================= */
+
+.register-error {
+    margin-bottom: 18px;
+
+    padding: 11px 13px;
+
+    border: 1px solid #ff5252;
+    border-radius: 9px;
+
+    color: #dc3636;
+    background: #fff0f0;
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   ACCOUNT CREATED
+   ========================================================= */
+
+.account-created-card {
+    padding: 36px;
+
+    text-align: left;
+}
+
+.success-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 24px;
+
+    border-radius: 50%;
+
+    color: #19a65b;
+
+    background: #e8f8ee;
+
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.account-created-card h1 {
+    margin: 0;
+
+    color: #111116;
+
+    font-size: 27px;
+    line-height: 1.2;
+
+    letter-spacing: -0.7px;
+}
+
+.account-created-card p {
+    margin: 8px 0 23px;
+
+    color: #686775;
+
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+    .register-card {
+        padding: 28px 24px;
+    }
+
+    .account-created-card {
+        padding: 28px 24px;
+    }
+}

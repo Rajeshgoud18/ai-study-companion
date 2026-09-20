@@ -1,0 +1,1133 @@
+/* ==========================================
+   AI TUTOR PAGE
+========================================== */
+
+.ai-tutor-page {
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr) 340px;
+
+    background:
+        radial-gradient(
+            circle at 35% 20%,
+            rgba(113, 91, 255, 0.08),
+            transparent 32%
+        ),
+        #f8f8fb;
+
+    color: #171720;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* ==========================================
+   LEFT SIDEBAR
+========================================== */
+
+.tutor-sidebar {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px 18px;
+
+    border-right: 1px solid #e5e4ed;
+
+    background: #f9f9fc;
+}
+
+.tutor-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 0 12px 34px;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.tutor-brand-icon {
+    width: 32px;
+    height: 32px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background: linear-gradient(
+        135deg,
+        #6257ee,
+        #9550ed
+    );
+
+    color: white;
+
+    font-size: 17px;
+
+    box-shadow:
+        0 7px 18px rgba(98, 87, 238, 0.22);
+}
+
+.sidebar-section {
+    margin-bottom: 30px;
+}
+
+.sidebar-section-title {
+    margin: 0 14px 12px;
+
+    color: #9998a8;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+.project-sidebar-item,
+.material-sidebar-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #5d5c6e;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    text-align: left;
+}
+
+.project-sidebar-item {
+    cursor: pointer;
+}
+
+.project-sidebar-item:hover {
+    background: #f0eeff;
+}
+
+.project-sidebar-item.active {
+    background: #ebe8ff;
+    color: #5146db;
+    font-weight: 700;
+}
+
+.sidebar-folder {
+    font-size: 18px;
+}
+
+.material-sidebar-item {
+    overflow: hidden;
+}
+
+.material-icon {
+    color: #88869a;
+}
+
+.material-name {
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.empty-materials {
+    padding: 8px 14px;
+
+    color: #aaa9b5;
+
+    font-size: 12px;
+}
+
+.tutor-sidebar-bottom {
+    margin-top: auto;
+}
+
+.tutor-sidebar-bottom > button {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    margin-bottom: 18px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #777686;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.tutor-sidebar-bottom > button:hover {
+    background: #efedff;
+    color: #5146db;
+}
+
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 16px 12px 0;
+
+    border-top: 1px solid #e5e4ed;
+}
+
+.sidebar-user-avatar {
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #6257ee;
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.sidebar-user strong,
+.sidebar-user span {
+    display: block;
+}
+
+.sidebar-user strong {
+    font-size: 13px;
+}
+
+.sidebar-user span {
+    margin-top: 3px;
+
+    color: #9998a8;
+
+    font-size: 11px;
+}
+
+
+/* ==========================================
+   CENTER
+========================================== */
+
+.tutor-main {
+    min-width: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: white;
+}
+
+.tutor-topbar {
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    border-bottom: 1px solid #e5e4ed;
+}
+
+.tutor-page-title {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.tutor-page-subtitle {
+    margin-top: 4px;
+
+    color: #9998a8;
+
+    font-size: 12px;
+}
+
+.using-project {
+    padding: 8px 15px;
+
+    border-radius: 20px;
+
+    background: #efedff;
+    color: #5146db;
+
+    font-size: 12px;
+}
+
+.using-project strong {
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   CONVERSATION
+========================================== */
+
+.tutor-conversation {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 34px 34px 120px;
+}
+
+.tutor-empty-state {
+    min-height: 520px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.empty-ai-icon {
+    width: 58px;
+    height: 58px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 20px;
+
+    border-radius: 16px;
+
+    background: linear-gradient(
+        135deg,
+        #6257ee,
+        #9a4eee
+    );
+
+    color: white;
+
+    font-size: 25px;
+
+    box-shadow:
+        0 12px 30px rgba(98, 87, 238, 0.25);
+}
+
+.tutor-empty-state h1 {
+    margin: 0;
+
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.tutor-empty-state p {
+    margin: 9px 0 24px;
+
+    color: #898896;
+
+    font-size: 14px;
+}
+
+.suggestion-row {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.suggestion-row button,
+.quick-actions button {
+    padding: 9px 13px;
+
+    border: 1px solid #d9d7e5;
+    border-radius: 20px;
+
+    background: white;
+
+    color: #666576;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.suggestion-row button:hover,
+.quick-actions button:hover {
+    border-color: #8177ee;
+
+    color: #5c50df;
+    background: #f8f7ff;
+}
+
+
+/* ==========================================
+   MESSAGES
+========================================== */
+
+.conversation-content {
+    max-width: 850px;
+
+    margin: 0 auto;
+}
+
+.user-message {
+    max-width: 70%;
+
+    margin-left: auto;
+    margin-bottom: 28px;
+
+    padding: 15px 18px;
+
+    border-radius: 16px 16px 4px 16px;
+
+    background: #6257ee;
+    color: white;
+
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.ai-response {
+    display: flex;
+    gap: 14px;
+
+    margin-bottom: 25px;
+}
+
+.ai-response-avatar {
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #ece9ff;
+    color: #6257ee;
+
+    font-size: 16px;
+}
+
+.ai-response-content {
+    min-width: 0;
+    flex: 1;
+}
+
+.ai-response-header {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+
+    margin-bottom: 10px;
+}
+
+.ai-response-header strong {
+    font-size: 14px;
+}
+
+.ai-response-header span {
+    color: #9998a8;
+
+    font-size: 11px;
+}
+
+.ai-answer {
+    color: #282733;
+
+    font-size: 15px;
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+}
+
+.reference-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+.reference-card {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    min-width: 0;
+
+    padding: 13px;
+
+    border: 1px solid #dfddea;
+    border-radius: 12px;
+
+    background: #fbfbfd;
+}
+
+.reference-icon {
+    width: 32px;
+    height: 32px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    background: #efedff;
+    color: #6257ee;
+}
+
+.reference-content {
+    min-width: 0;
+}
+
+.reference-content strong,
+.reference-content span {
+    display: block;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.reference-content strong {
+    color: #5146db;
+
+    font-size: 12px;
+}
+
+.reference-content span {
+    margin-top: 3px;
+
+    color: #9998a8;
+
+    font-size: 11px;
+}
+
+.quick-actions {
+    display: flex;
+    gap: 8px;
+
+    margin-top: 15px;
+}
+
+.tutor-error {
+    padding: 12px;
+
+    border: 1px solid #f0caca;
+    border-radius: 9px;
+
+    background: #fff5f5;
+    color: #c33f3f;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   THINKING
+========================================== */
+
+.thinking {
+    display: flex;
+    gap: 5px;
+
+    align-items: center;
+
+    padding: 12px 0;
+}
+
+.thinking span {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #6257ee;
+
+    animation: thinking-dot 1.2s infinite ease-in-out;
+}
+
+.thinking span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.thinking span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes thinking-dot {
+    0%,
+    60%,
+    100% {
+        opacity: 0.3;
+        transform: translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+
+/* ==========================================
+   INPUT
+========================================== */
+
+.tutor-input-wrapper {
+    position: absolute;
+
+    left: 280px;
+    right: 340px;
+    bottom: 0;
+
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+
+    padding: 18px 28px;
+
+    border-top: 1px solid #e8e7ef;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    backdrop-filter: blur(10px);
+}
+
+.tutor-input-wrapper textarea {
+    flex: 1;
+
+    min-height: 48px;
+    max-height: 130px;
+
+    box-sizing: border-box;
+
+    padding: 13px 16px;
+
+    border: 1px solid #d8d6e2;
+    border-radius: 14px;
+
+    outline: none;
+
+    resize: none;
+
+    background: white;
+    color: #272631;
+
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.tutor-input-wrapper textarea:focus {
+    border-color: #7166ee;
+
+    box-shadow:
+        0 0 0 3px rgba(98, 87, 238, 0.08);
+}
+
+.send-button {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border: 0;
+    border-radius: 13px;
+
+    background: #6257ee;
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background: #5449df;
+}
+
+.send-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+
+/* ==========================================
+   RIGHT LEARNING CONTEXT
+========================================== */
+
+.learning-context {
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    padding: 30px 22px;
+
+    border-left: 1px solid #e5e4ed;
+
+    background: #f9f9fc;
+
+    overflow: hidden;
+}
+
+.context-title {
+    margin-bottom: 20px;
+
+    color: #666576;
+
+    font-size: 16px;
+    font-weight: 800;
+}
+
+
+/* ==========================================
+   CONTEXT CARDS
+========================================== */
+
+.context-card {
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-bottom: 18px;
+    padding: 20px;
+
+    border: 1px solid #e0dfea;
+    border-radius: 15px;
+
+    background: white;
+
+    box-shadow:
+        0 5px 16px rgba(30, 29, 50, 0.03);
+}
+
+
+/* ==========================================
+   MASTERY
+========================================== */
+
+.mastery-card {
+    min-height: 125px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.mastery-ring {
+    width: 84px;
+    height: 84px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #6257ee var(--mastery),
+            #ecebf2 var(--mastery)
+        );
+
+    position: relative;
+}
+
+.mastery-ring::after {
+    content: "";
+
+    position: absolute;
+    inset: 8px;
+
+    border-radius: 50%;
+
+    background: white;
+}
+
+.mastery-ring span {
+    position: relative;
+    z-index: 1;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.mastery-card > div:last-child {
+    min-width: 0;
+}
+
+.mastery-card strong {
+    display: block;
+
+    color: #20202a;
+
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.growth-badge {
+    display: inline-block;
+
+    margin-top: 8px;
+    padding: 5px 9px;
+
+    border-radius: 12px;
+
+    background: #e6f7ed;
+    color: #159447;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   NEEDS ATTENTION
+========================================== */
+
+.context-card h3 {
+    margin: 0 0 18px;
+
+    color: #20202a;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.context-muted {
+    margin: 0;
+
+    color: #9998a8;
+
+    font-size: 12px;
+}
+
+
+/* Each concept */
+
+.attention-item {
+    width: 100%;
+
+    margin-top: 17px;
+}
+
+.attention-item:first-of-type {
+    margin-top: 0;
+}
+
+.attention-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 8px;
+
+    color: #565564;
+
+    font-size: 12px;
+}
+
+.attention-header span:first-child {
+    min-width: 0;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.attention-header span:last-child {
+    flex-shrink: 0;
+
+    color: #777686;
+
+    font-weight: 600;
+}
+
+.attention-bar {
+    width: 100%;
+    height: 5px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #eeeeF2;
+}
+
+.attention-bar div {
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: #e67d00;
+}
+
+
+/* ==========================================
+   RECOMMENDATION
+========================================== */
+
+.recommendation-card {
+    display: block;
+
+    border: 1px solid #766bf2;
+
+    background: #f3f1ff;
+}
+
+.recommendation-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #5146db;
+
+    font-size: 14px;
+}
+
+.recommendation-heading span {
+    flex-shrink: 0;
+
+    font-size: 18px;
+}
+
+.recommendation-heading strong {
+    font-size: 14px;
+}
+
+.recommendation-card p {
+    margin: 13px 0 16px;
+
+    color: #4f4d5d;
+
+    font-size: 13px;
+    line-height: 1.55;
+
+    word-break: normal;
+}
+
+.recommendation-card button {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: block;
+
+    padding: 10px 13px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: #6257ee;
+    color: white;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+}
+
+.recommendation-card button:hover {
+    background: #5449df;
+}
+
+
+/* ==========================================
+   RESPONSIVE RIGHT SIDEBAR
+========================================== */
+
+@media (max-width: 1250px) {
+    .ai-tutor-page {
+        grid-template-columns:
+            250px
+            minmax(0, 1fr)
+            300px;
+    }
+
+    .learning-context {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .context-card {
+        padding: 16px;
+    }
+
+    .mastery-card {
+        gap: 12px;
+    }
+
+    .mastery-ring {
+        width: 70px;
+        height: 70px;
+    }
+
+    .mastery-ring::after {
+        inset: 7px;
+    }
+}
+
+/* ==========================================
+   LOADING
+========================================== */
+
+.tutor-loading-page {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #f8f8fb;
+}
+
+.tutor-loading-spinner {
+    width: 34px;
+    height: 34px;
+
+    margin-bottom: 18px;
+
+    border: 3px solid #e3e1f2;
+    border-top-color: #6257ee;
+
+    border-radius: 50%;
+
+    animation: tutor-spin 0.8s linear infinite;
+}
+
+.tutor-loading-page h2 {
+    margin: 0;
+
+    font-size: 20px;
+}
+
+.tutor-loading-page p {
+    color: #9998a8;
+
+    font-size: 13px;
+}
+
+@keyframes tutor-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1100px) {
+
+    .ai-tutor-page {
+        grid-template-columns:
+            240px
+            minmax(0, 1fr);
+    }
+
+    .learning-context {
+        display: none;
+    }
+
+    .tutor-input-wrapper {
+        left: 240px;
+        right: 0;
+    }
+}
+
+@media (max-width: 760px) {
+
+    .ai-tutor-page {
+        display: block;
+    }
+
+    .tutor-sidebar {
+        min-height: auto;
+
+        border-right: 0;
+        border-bottom: 1px solid #e5e4ed;
+    }
+
+    .sidebar-section,
+    .tutor-sidebar-bottom {
+        display: none;
+    }
+
+    .tutor-brand {
+        padding-bottom: 0;
+    }
+
+    .tutor-topbar {
+        padding: 0 18px;
+    }
+
+    .using-project {
+        display: none;
+    }
+
+    .tutor-conversation {
+        padding: 24px 18px 110px;
+    }
+
+    .tutor-input-wrapper {
+        left: 0;
+        right: 0;
+
+        padding: 12px;
+    }
+
+    .reference-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .user-message {
+        max-width: 88%;
+    }
+}

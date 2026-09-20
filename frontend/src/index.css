@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #ff6b35;
+    --primary-light: #fff0e8;
+    --primary-hover: #f45b27;
+
+    --dark: #171717;
+    --text: #242424;
+    --muted: #777777;
+    --light-text: #999999;
+
+    --background: #fffaf5;
+    --surface: #ffffff;
+
+    --purple: #6b3fd6;
+    --purple-light: #eee7ff;
+
+    --green: #55b56b;
+    --green-light: #e9f8ed;
+
+    --red: #dc4c4c;
+    --red-light: #fff0f0;
+
+    --border: #eeeeee;
+
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 26px;
+    --radius-xl: 32px;
+
+    --shadow-sm: 0 8px 25px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 20px 50px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.10);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    overflow-x: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+::selection {
+    background: var(--primary);
+    color: white;
+}
