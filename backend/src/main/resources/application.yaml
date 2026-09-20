@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: ai-study-companion
+
+  ai:
+    model:
+      chat: openai
+      embedding:
+        text: openai
+      audio:
+        speech: none
+        transcription: none
+      image: none
+      moderation: none
+
+    openai:
+      api-key: ${OPENROUTER_API_KEY}
+      base-url: ${OPENROUTER_BASE_URL:https://openrouter.ai/api/v1}
+
+      chat:
+        model: ${AI_CHAT_MODEL:google/gemini-2.5-flash}
+        temperature: ${AI_TEMPERATURE:0.3}
+        max-tokens: ${AI_MAX_TOKENS:1000}
+
+      embedding:
+        model: ${AI_EMBEDDING_MODEL:openai/text-embedding-3-small}
+        dimensions: 1536
+
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1536
+
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/study_companion}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: ${SHOW_SQL:false}
+    properties:
+      hibernate:
+        format_sql: ${FORMAT_SQL:false}
+
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+server:
+  port: ${SERVER_PORT:8080}
