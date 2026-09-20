@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class ConceptService {
 
-    private final ChatClient groqChatClient;
+    private final ChatClient chatClient;
     private final DocumentChunkRepository documentChunkRepository;
     private final ProjectRepository projectRepository;
     private final ConceptRepository conceptRepository;
@@ -29,14 +29,14 @@ public class ConceptService {
     private final AIUsageService aiUsageService;
 
     public ConceptService(
-            @Qualifier("groqChatClient") ChatClient groqChatClient,
+            ChatClient chatClient,
             DocumentChunkRepository documentChunkRepository,
             ProjectRepository projectRepository,
             ConceptRepository conceptRepository,
             ObjectMapper objectMapper,
             AIUsageService aiUsageService) {
 
-        this.groqChatClient = groqChatClient;
+        this.chatClient = chatClient;
         this.documentChunkRepository = documentChunkRepository;
         this.projectRepository = projectRepository;
         this.conceptRepository = conceptRepository;
@@ -105,48 +105,30 @@ public class ConceptService {
 
         // 5. Build prompt
         String prompt = """
-        You are an educational concept extraction system.
+        Extract 3 to 5 important learning concepts from the study material.
 
-        Extract the most important learning concepts from the
-        provided study material.
+        Use only the provided material.
+
+        Return ONLY a JSON object in exactly this format:
+
+        {"concepts":[{"name":"Concept 1","description":"Short description"}]}
 
         Rules:
-        - Use ONLY the provided study material.
-        - Extract at most 5 concepts.
-        - Concepts must be meaningful topics that can be tested in a quiz.
-        - Avoid duplicate concepts.
-        - Keep the concept name short.
-        - Keep the description under 20 words.
-        - Do not introduce outside knowledge.
-
-        Return ONLY valid JSON matching this exact structure:
-
-        {
-          "concepts": [
-            {
-              "name": "Concept name",
-              "description": "Short description"
-            }
-          ]
-        }
-
-        Do not return markdown.
-        Do not use ```json.
-        Do not add any explanation outside the JSON.
+        - Valid JSON only
+        - Double quotes only
+        - No markdown
+        - No ``` 
+        - No explanation
+        - No trailing commas
+        - Maximum 5 concepts
 
         Study material:
-
         %s
         """.formatted(context);
 
-
-        System.out.println(
-                "Sending concept extraction request to AI..."
-        );
-
         // 6. Single AI request
         String rawResponse =
-                groqChatClient.prompt()
+                chatClient.prompt()
                         .user(prompt)
                         .call()
                         .content();

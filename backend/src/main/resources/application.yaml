@@ -37,6 +37,7 @@ spring:
     url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/study_companion}
     username: ${DATABASE_USERNAME:postgres}
     password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
@@ -45,6 +46,7 @@ spring:
     properties:
       hibernate:
         format_sql: ${FORMAT_SQL:false}
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   servlet:
     multipart:
