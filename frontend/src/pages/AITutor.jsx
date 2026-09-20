@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 import { getProject } from "../services/projectService.js";
 import { getMaterials } from "../services/materialService.js";
 import { askTutor } from "../services/tutorService.js";
 import api from "../services/api.js";
 
+import "./AITutor.css";
 import "./AITutor.css";
 
 function AITutor() {
@@ -17,7 +19,8 @@ function AITutor() {
     const [growth, setGrowth] = useState(null);
 
     const [question, setQuestion] = useState("");
-    const [tutorResponse, setTutorResponse] = useState(null);
+
+    const [messages, setMessages] = useState([]);
 
     const [loading, setLoading] = useState(true);
     const [tutorLoading, setTutorLoading] = useState(false);
@@ -136,24 +139,47 @@ function AITutor() {
     // ==========================================
 
     const handleAskTutor = async () => {
-        const trimmedQuestion =
-            question.trim();
+
+        const trimmedQuestion = question.trim();
 
         if (!trimmedQuestion) {
             return;
         }
 
         try {
+
             setTutorLoading(true);
             setError("");
+
+            // Clear the input immediately
+            setQuestion("");
+
+            // Add the user's question immediately
+            setMessages((currentMessages) => [
+                ...currentMessages,
+                {
+                    type: "user",
+                    content: trimmedQuestion
+                }
+            ]);
 
             const response = await askTutor(
                 projectId,
                 trimmedQuestion
             );
 
-            setTutorResponse(response);
+            // Add AI response without deleting previous messages
+            setMessages((currentMessages) => [
+                ...currentMessages,
+                {
+                    type: "ai",
+                    content: response.answer,
+                    citations: response.citations || []
+                }
+            ]);
+
         } catch (error) {
+
             console.error(
                 "Tutor request failed:",
                 error
@@ -162,8 +188,11 @@ function AITutor() {
             setError(
                 "Unable to get an answer from the AI Tutor."
             );
+
         } finally {
+
             setTutorLoading(false);
+
         }
     };
 
@@ -393,93 +422,26 @@ function AITutor() {
 
                 <div className="tutor-conversation">
 
-                    {!tutorResponse &&
-                        !tutorLoading ? (
-                        <div className="tutor-empty-state">
+                    <div className="conversation-content">
 
-                            <div className="empty-ai-icon">
-                                ✦
-                            </div>
+                        {messages.map((message, index) => (
 
-                            <h1>
-                                Ask your AI Tutor
-                            </h1>
+                            <div
+                                key={index}
+                                className={
+                                    message.type === "user"
+                                        ? "user-message"
+                                        : "ai-response"
+                                }
+                            >
 
-                            <p>
-                                Ask anything about your
-                                uploaded study material.
-                            </p>
+                                {message.type === "user" ? (
 
-                            <div className="suggestion-row">
-
-                                <button
-                                    onClick={() =>
-                                        setQuestion(
-                                            "Explain the main concepts from this material."
-                                        )
-                                    }
-                                >
-                                    Explain the main concepts
-                                </button>
-
-                                <button
-                                    onClick={() =>
-                                        setQuestion(
-                                            "Give me a simple example."
-                                        )
-                                    }
-                                >
-                                    Give me an example
-                                </button>
-
-                                <button
-                                    onClick={() =>
-                                        setQuestion(
-                                            "Quiz me on this material."
-                                        )
-                                    }
-                                >
-                                    Quiz me
-                                </button>
-
-                            </div>
-
-                        </div>
-                    ) : (
-                        <div className="conversation-content">
-
-                            {/* USER QUESTION */}
-
-                            {question && (
-                                <div className="user-message">
-                                    {question}
-                                </div>
-                            )}
-
-                            {/* AI RESPONSE */}
-
-                            {tutorLoading ? (
-                                <div className="ai-response">
-
-                                    <div className="ai-response-avatar">
-                                        ✦
+                                    <div className="user-message-content">
+                                        {message.content}
                                     </div>
 
-                                    <div className="thinking">
-
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-
-                                    </div>
-
-                                </div>
-                            ) : tutorResponse ? (
-                                <div className="ai-response">
-
-                                    <div className="ai-response-avatar">
-                                        ✦
-                                    </div>
+                                ) : (
 
                                     <div className="ai-response-content">
 
@@ -496,101 +458,94 @@ function AITutor() {
                                         </div>
 
                                         <div className="ai-answer">
-                                            {tutorResponse.answer}
+
+                                            <ReactMarkdown>
+                                                {message.content}
+                                            </ReactMarkdown>
+
                                         </div>
 
-                                        {/* CITATIONS */}
+                                        {message.citations?.length > 0 && (
 
-                                        {tutorResponse
-                                            .citations
-                                            ?.length > 0 && (
-                                                <div className="reference-grid">
+                                            <div className="reference-grid">
 
-                                                    {tutorResponse.citations.map(
-                                                        (
-                                                            citation,
-                                                            index
-                                                        ) => (
-                                                            <div
-                                                                className="reference-card"
-                                                                key={index}
-                                                            >
+                                                {message.citations.map(
+                                                    (citation, citationIndex) => (
 
-                                                                <div className="reference-icon">
-                                                                    ▧
-                                                                </div>
+                                                        <div
+                                                            className="reference-card"
+                                                            key={citationIndex}
+                                                        >
 
-                                                                <div className="reference-content">
+                                                            <div className="reference-icon">
+                                                                📄
+                                                            </div>
 
-                                                                    <strong>
-                                                                        {
-                                                                            citation.fileName
-                                                                        }
-                                                                    </strong>
+                                                            <div className="reference-content">
 
-                                                                    <span>
-                                                                        Page{" "}
-                                                                        {
-                                                                            citation.pageNumber
-                                                                        }
-                                                                    </span>
+                                                                <strong>
+                                                                    {citation.fileName}
+                                                                </strong>
 
-                                                                </div>
+                                                                <span>
+                                                                    Page{" "}
+                                                                    {citation.pageNumber}
+                                                                </span>
 
                                                             </div>
-                                                        )
-                                                    )}
 
-                                                </div>
-                                            )}
+                                                        </div>
 
-                                        <div className="quick-actions">
-
-                                            <button
-                                                onClick={() =>
-                                                    setQuestion(
-                                                        "Explain that in simpler terms."
                                                     )
-                                                }
-                                            >
-                                                Explain simpler
-                                            </button>
+                                                )}
 
-                                            <button
-                                                onClick={() =>
-                                                    setQuestion(
-                                                        "Give me a practical example."
-                                                    )
-                                                }
-                                            >
-                                                Give an example
-                                            </button>
+                                            </div>
 
-                                            <button
-                                                onClick={() =>
-                                                    setQuestion(
-                                                        "Quiz me on this concept."
-                                                    )
-                                                }
-                                            >
-                                                Quiz me
-                                            </button>
-
-                                        </div>
+                                        )}
 
                                     </div>
 
-                                </div>
-                            ) : null}
+                                )}
 
-                            {error && (
-                                <div className="tutor-error">
-                                    {error}
-                                </div>
-                            )}
+                            </div>
 
-                        </div>
-                    )}
+                        ))}
+
+                        {tutorLoading && (
+
+                            <div className="ai-response">
+
+                                <div className="ai-response-avatar">
+                                    ✦
+                                </div>
+
+                                <div className="ai-response-content">
+
+                                    <div className="ai-response-header">
+
+                                        <strong>
+                                            AI Tutor
+                                        </strong>
+
+                                        <span>
+                                            Thinking...
+                                        </span>
+
+                                    </div>
+
+                                    <div className="thinking">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        )}
+
+                    </div>
 
                 </div>
 

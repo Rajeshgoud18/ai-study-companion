@@ -438,7 +438,7 @@ function Home() {
 
                             <button
                                 className="project-menu-item"
-                                onClick={openProject}
+                                onClick={openTutor}
                             >
                                 <span>✦</span>
                                 AI Tutor

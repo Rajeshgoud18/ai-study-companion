@@ -465,11 +465,131 @@
 
 .ai-answer {
     color: #282733;
-
     font-size: 15px;
     line-height: 1.7;
+}
 
-    white-space: pre-wrap;
+/* Paragraphs */
+.ai-answer p {
+    margin: 0 0 16px;
+}
+
+.ai-answer p:last-child {
+    margin-bottom: 0;
+}
+
+/* Headings */
+.ai-answer h1,
+.ai-answer h2,
+.ai-answer h3 {
+    color: #20202a;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+.ai-answer h1 {
+    margin: 24px 0 12px;
+    font-size: 21px;
+}
+
+.ai-answer h2 {
+    margin: 22px 0 11px;
+    font-size: 18px;
+}
+
+.ai-answer h3 {
+    margin: 18px 0 9px;
+    font-size: 16px;
+}
+
+/* Lists */
+.ai-answer ul,
+.ai-answer ol {
+    margin: 8px 0 18px;
+    padding-left: 24px;
+}
+
+.ai-answer li {
+    margin: 7px 0;
+    padding-left: 3px;
+}
+
+.ai-answer li::marker {
+    color: #6257ee;
+}
+
+/* Bold text */
+.ai-answer strong {
+    color: #20202a;
+    font-weight: 700;
+}
+
+/* Inline code */
+.ai-answer code {
+    padding: 2px 6px;
+    border-radius: 5px;
+
+    background: #f0eeff;
+    color: #5146db;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 13px;
+}
+
+/* Code blocks */
+.ai-answer pre {
+    margin: 16px 0;
+
+    padding: 16px;
+
+    overflow-x: auto;
+
+    border: 1px solid #e0ddea;
+    border-radius: 10px;
+
+    background: #f7f7fa;
+}
+
+.ai-answer pre code {
+    display: block;
+
+    padding: 0;
+
+    background: transparent;
+    color: #282733;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Blockquotes */
+.ai-answer blockquote {
+    margin: 16px 0;
+    padding: 10px 16px;
+
+    border-left: 3px solid #6257ee;
+
+    background: #f7f6ff;
+    color: #5d5c6e;
+}
+
+/* Horizontal line */
+.ai-answer hr {
+    margin: 22px 0;
+
+    border: 0;
+    border-top: 1px solid #e5e4ed;
+}
+
+/* Links */
+.ai-answer a {
+    color: #5146db;
+    text-decoration: underline;
 }
 
 .reference-grid {
@@ -611,11 +731,7 @@
 ========================================== */
 
 .tutor-input-wrapper {
-    position: absolute;
-
-    left: 280px;
-    right: 340px;
-    bottom: 0;
+    flex-shrink: 0;
 
     display: flex;
     align-items: flex-end;

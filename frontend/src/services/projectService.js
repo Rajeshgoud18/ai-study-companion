@@ -10,11 +10,18 @@ export const getProject = async (projectId) => {
     return response.data;
 };
 
-export const createProject = async (spaceId, name) => {
+export const createProject = async (
+    spaceId,
+    name,
+    description,
+    learningGoal
+) => {
     const response = await api.post(
         `/spaces/${spaceId}/projects`,
         {
-            name
+            name,
+            description,
+            learningGoal
         }
     );
 
